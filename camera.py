@@ -2,9 +2,21 @@ from time import sleep
 from datetime import datetime
 import schedule
 import logging
+import logging.handlers as handlers
 
 from picamera import PiCamera
 camera = PiCamera()
+
+# log setup
+logger = logging.getLogger('my_app')
+logger.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(threadName)s -  %(levelname)s - %(message)s')
+logHandler = handlers.RotatingFileHandler('logs/camera.log',
+											maxBytes=100,
+											backupCount=2)
+logHandler.setLevel(logging.INFO)
+logger.addHandler(logHandler)
+
 
 def get_image_name():
 	now = datetime.now()
@@ -18,14 +30,10 @@ def take_photo():
 	camera.capture(image_name)
 	camera.stop_preview()
 
-	logging.info("Taking photo: " + image_name)
+	logger.info("Taking photo: " + image_name)
 
 
 if __name__ == "__main__":
-	logging.basicConfig(filename='camera.log',
-	 					level=logging.DEBUG,
-						format='%(asctime)s - %(name)s - %(threadName)s -  %(levelname)s - %(message)s')
-
 	schedule.every(1).minute.do(take_photo)
 	'''
 	schedule.every().day.at("08:00").do(take_photo)
@@ -36,7 +44,7 @@ if __name__ == "__main__":
 	schedule.every().day.at("15:33").do(take_photo)
 	'''
 
-	logging.debug("Scheduled events, entering loop...")
+	logger.debug("Scheduled events, entering loop...")
 	while True:
 		schedule.run_pending()  # check if we need to run anything
 		sleep(10)  # wait 10 seconds before checking each time again
