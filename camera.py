@@ -9,12 +9,12 @@ camera = PiCamera()
 
 # log setup
 logger = logging.getLogger('my_app')
-logger.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(threadName)s -  %(levelname)s - %(message)s')
 logHandler = handlers.RotatingFileHandler('logs/camera.log',
 											maxBytes=1000,
 											backupCount=3)
 logHandler.setLevel(logging.INFO)
+logHandler.setFormatter(formatter)
 logger.addHandler(logHandler)
 
 
