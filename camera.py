@@ -12,8 +12,8 @@ logger = logging.getLogger('my_app')
 logger.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(threadName)s -  %(levelname)s - %(message)s')
 logHandler = handlers.RotatingFileHandler('logs/camera.log',
-											maxBytes=100,
-											backupCount=2)
+											maxBytes=1000,
+											backupCount=3)
 logHandler.setLevel(logging.INFO)
 logger.addHandler(logHandler)
 
