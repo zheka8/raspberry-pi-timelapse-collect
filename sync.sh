@@ -1,4 +1,4 @@
 #!/bin/bash
 
-rclone move images gdrive:images
-rclone move logs gdrive:logs
+rclone move --exclude .gitkeep images gdrive:images
+rclone move --exclude .gitkeep logs gdrive:logs
