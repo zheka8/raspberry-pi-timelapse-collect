@@ -1,4 +1,2 @@
-datetime
 schedule
-logging
-#picamera
+picamera
