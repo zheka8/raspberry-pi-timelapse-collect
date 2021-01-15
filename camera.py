@@ -30,7 +30,7 @@ def take_photo():
 	camera.capture(image_name)
 	camera.stop_preview()
 
-	logger.info("Taking photo: " + image_name)
+	logger.info("Took photo: " + image_name)
 
 
 if __name__ == "__main__":
