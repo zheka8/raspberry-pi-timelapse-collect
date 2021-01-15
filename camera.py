@@ -3,21 +3,21 @@ from datetime import datetime
 import schedule
 import logging
 
-#from picamera import PiCamera
-#camera = PiCamera()
+from picamera import PiCamera
+camera = PiCamera()
 
 def get_image_name():
 	now = datetime.now()
-	return 'image_' + now.strftime('%Y-%m-%d-%H-%M-%S') + '.jpg'
+	return 'images/image_' + now.strftime('%Y-%m-%d-%H-%M-%S') + '.jpg'
 
 def take_photo():
 	image_name = get_image_name()
-	'''
+
 	camera.start_preview()
 	sleep(5)
 	camera.capture(image_name)
 	camera.stop_preview()
-	'''
+
 	logging.info("Taking photo: " + image_name)
 
 
