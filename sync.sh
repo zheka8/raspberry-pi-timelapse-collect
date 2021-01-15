@@ -14,5 +14,4 @@ eval $mv_logs
 while [ $? -ne 0 ]; do
 	eval $mv_images
 	eval $mv_logs
-	echo "repeat"
 done
