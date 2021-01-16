@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# log ip address
-ip_addr=`ip addr show wlan0 | awk '/inet / {print $2}'`
-echo `date +"%Y-%m-%d-%H-%M-%S"` Sync from $HOSTNAME  $ip_addr >> logs/camera.log
-
 # setup absolute paths
 images_dir="images"
 log_dir="logs"
@@ -12,6 +8,9 @@ full_path=$(realpath $0)
 dir_path=$(dirname $full_path)
 echo $dir_path
 
+# log ip address
+ip_addr=`ip addr show wlan0 | awk '/inet / {print $2}'`
+echo `date +"%Y-%m-%d-%H-%M-%S"` Sync from $HOSTNAME  $ip_addr >> $dir_path/logs/camera.log
 
 # move files
 mv_images="rclone move --exclude .gitkeep $dir_path/$images_dir gdrive:images_$HOSTNAME"
