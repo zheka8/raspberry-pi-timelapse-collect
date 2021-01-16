@@ -37,7 +37,7 @@ def take_photo():
 
 
 if __name__ == "__main__":
-	schedule.every(1).minute.do(take_photo)
+	schedule.every(10).minutes.do(take_photo)
 	'''
 	schedule.every().day.at("08:00").do(take_photo)
 	schedule.every().day.at("12:00").do(take_photo)
