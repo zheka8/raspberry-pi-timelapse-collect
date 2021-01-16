@@ -7,11 +7,13 @@ import logging.handlers as handlers
 from picamera import PiCamera
 camera = PiCamera()
 
+project_folder = '/home/pi/Projects/raspberry-pi-timelapse-collect/'
+
 # log setup
 logger = logging.getLogger('my_app')
 logger.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(threadName)s -  %(levelname)s - %(message)s')
-logHandler = handlers.RotatingFileHandler('logs/camera.log',
+logHandler = handlers.RotatingFileHandler(project_folder + 'logs/' + 'camera.log',
 											maxBytes=100000,
 											backupCount=3)
 logHandler.setLevel(logging.INFO)
@@ -21,14 +23,14 @@ logger.addHandler(logHandler)
 
 def get_image_name():
 	now = datetime.now()
-	return 'images/image_' + now.strftime('%Y-%m-%d-%H-%M-%S') + '.jpg'
+	return 'image_' + now.strftime('%Y-%m-%d-%H-%M-%S') + '.jpg'
 
 def take_photo():
 	image_name = get_image_name()
 
 	camera.start_preview()
 	sleep(5)
-	camera.capture(image_name)
+	camera.capture(project_folder + 'images/' + image_name)
 	camera.stop_preview()
 
 	logger.info("Took photo: " + image_name)
