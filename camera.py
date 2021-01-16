@@ -6,6 +6,7 @@ import logging.handlers as handlers
 
 from picamera import PiCamera
 camera = PiCamera()
+camera.rotation = 180
 
 project_folder = '/home/pi/Projects/raspberry-pi-timelapse-collect/'
 
@@ -50,4 +51,4 @@ if __name__ == "__main__":
 	logger.debug("Scheduled events, entering loop...")
 	while True:
 		schedule.run_pending()  # check if we need to run anything
-		sleep(10)  # wait 10 seconds before checking each time again
+		sleep(20)  # wait before checking each time again
