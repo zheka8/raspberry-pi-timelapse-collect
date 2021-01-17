@@ -38,15 +38,14 @@ def take_photo():
 
 
 if __name__ == "__main__":
-	schedule.every(10).minutes.do(take_photo)
-	'''
+	# schedule.every(10).minutes.do(take_photo)
+	
 	schedule.every().day.at("08:00").do(take_photo)
+	schedule.every().day.at("10:00").do(take_photo)
 	schedule.every().day.at("12:00").do(take_photo)
-	schedule.every().day.at("15:00").do(take_photo)
-	schedule.every().day.at("15:31").do(take_photo)
-	schedule.every().day.at("15:32").do(take_photo)
-	schedule.every().day.at("15:33").do(take_photo)
-	'''
+	schedule.every().day.at("14:00").do(take_photo)
+	schedule.every().day.at("16:00").do(take_photo)
+	
 
 	logger.debug("Scheduled events, entering loop...")
 	while True:
