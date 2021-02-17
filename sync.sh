@@ -7,9 +7,10 @@ log_dir="logs"
 full_path=$(realpath $0)
 dir_path=$(dirname $full_path)
 
-# log ip address
-ip_addr=`ip addr show wlan0 | awk '/inet / {print $2}'`
-echo `date +"%Y-%m-%d-%H-%M-%S"` Sync from $HOSTNAME  $ip_addr >> $dir_path/logs/camera.log
+# log private and public ip addresses
+ip_addr_pri=`ip addr show wlan0 | awk '/inet / {print $2}'`
+ip_addr_pub=`curl -s http://whatismyip.akamai.com/`
+echo `date +"%Y-%m-%d-%H-%M-%S"` Sync from $HOSTNAME  $ip_addr_pri $ip_addr_pub >> $dir_path/logs/camera.log
 
 # move files
 mv_images="rclone move --exclude .gitkeep $dir_path/$images_dir gdrive:images_$HOSTNAME"
