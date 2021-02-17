@@ -2,4 +2,4 @@
 
 Takes periodic photos and uploads them to cloud storage for later processing.
 
-Can be used to create timelapses
+Can be used to create timelapses.
